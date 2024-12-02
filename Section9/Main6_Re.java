@@ -1,23 +1,22 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Main6 {
+public class Main6_Re {
 	
-	static int[] unf;
-	public static int Find(int v) {
-		if(v == unf[v]) {
+	static int[] arr;
+	public static int find(int v) {
+		if(v == arr[v]) {
 			return v;
 		}
 		else {
-			return unf[v] = Find(unf[v]);
+			return arr[v] = find(arr[v]);
 		}
 	}
-	
-	public static void Union(int a, int b) {
-		int fa = Find(a);
-		int fb = Find(b);
+	public static void union(int a, int b) {
+		int fa = find(a);
+		int fb = find(b);
 		if(fa != fb) {
-			unf[fa] = fb;
+			arr[fa] = fb;
 		}
 	}
 	
@@ -29,31 +28,31 @@ public class Main6 {
 		int n = Integer.parseInt(st.nextToken());
 		int m = Integer.parseInt(st.nextToken());
 		
-		unf = new int[n + 1];
+		arr = new int[n + 1];
+		
 		for(int i = 1; i <= n; i++) {
-			unf[i] = i;
+			arr[i] = i;
 		}
-		for(int i = 1; i <= m; i++) {
+	
+		for(int i = 0; i < m; i++) {
 			st = new StringTokenizer(br.readLine());
 			
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
-		
-			Union(a, b);
+			
+			union(a, b);
 		}
 		st = new StringTokenizer(br.readLine());
 		
 		int a = Integer.parseInt(st.nextToken());
 		int b = Integer.parseInt(st.nextToken());
-		int fa = Find(a);
-		int fb = Find(b);
 		
-		String ans = "";
+		int fa = find(a);
+		int fb = find(b);
+		String ans = "NO";
+
 		if(fa == fb) {
 			ans = "YES";
-		}
-		else {
-			ans = "NO";
 		}
 		System.out.println(ans);
 	}
