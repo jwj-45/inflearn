@@ -4,16 +4,17 @@ import java.util.*;
 public class Main3 {
 	
 	static int[] dy;
+	static int n;
 	public int solution(int[] arr) {
-		dy = new int[arr.length];
-		int answer = 1;
+		dy = new int[n];
+		int answer = 0;
 		dy[0] = 1;
-		for(int i = 1; i < arr.length; i++) {
+		for(int i = 1; i < n; i++) {
 			int max = 0;
 			for(int j = i - 1; j >= 0; j--) {
-				if(arr[j] < arr[i] && dy[j] > max) {
-					max = dy[j];
-				}
+				if(arr[i] > arr[j]) {
+					max = Math.max(max, dy[j]);
+				}				
 			}
 			dy[i] = max + 1;
 			answer = Math.max(answer, dy[i]);
@@ -25,7 +26,7 @@ public class Main3 {
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
-		int n = Integer.parseInt(br.readLine());
+		n = Integer.parseInt(br.readLine());
 		int[] arr = new int[n];
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
