@@ -44,7 +44,7 @@ public class Main1 {
 			arr.add(new Physic(h, w));
 		}
 		Collections.sort(arr);
-		Main main = new Main();
+		Main1 main = new Main1();
 		
 		System.out.println(main.solution(arr));
 		
